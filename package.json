@@ -8,12 +8,12 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon src/index.ts",
-        "postinstall": "npm run build",
-        "prestart": "npm install",
-        "build": "npm run tsc -- -p .",
+        "postinstall": "yarn build",
+        "prestart": "yarn install",
+        "build": "yarn tsc",
         "start": "node ./build/index.js",
         "test": "jest",
-        "tsc": "tsc"
+        "tsc": "tsc -p ."
     },
     "license": "MIT",
     "devDependencies": {

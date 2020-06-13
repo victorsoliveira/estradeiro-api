@@ -5,8 +5,6 @@ import { createConnection } from "typeorm";
 import { useContainer as ormUseContainer } from "typeorm";
 import { Container } from "typedi";
 
-import path from 'path';
-
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -14,6 +12,8 @@ import app from "./app";
 
 routingUseContainer(Container);
 ormUseContainer(Container);
+
+console.log(__dirname);
 
 createConnection({
     type: "postgres",
@@ -32,20 +32,20 @@ createConnection({
     logging: true,
     migrationsTableName: "migrations",
     entities: [
-      path.resolve(__dirname, 'entities', process.env.FILES_EXTENSION || '*.ts')
+      `${process.env.BASE_PATH}/entities/${process.env.FILES_EXTENSION}`
     ],
     subscribers: [
-      path.resolve(__dirname, 'subscribers', process.env.FILES_EXTENSION || '*.ts')
+      `${process.env.BASE_PATH}/subscribers/'${process.env.FILES_EXTENSION}`
     ],
     cli: {
-        "entitiesDir": path.resolve(__dirname, 'entities'),
-        "subscribersDir": path.resolve(__dirname, 'subscribers')
+        "entitiesDir": `${process.env.BASE_PATH}/entities'`,
+        "subscribersDir": `${process.env.BASE_PATH}/subscribers'`
     }
 }).then(() => {
 
   useExpressServer(app, {
     controllers: [
-      path.resolve(__dirname, 'controllers', process.env.FILES_EXTENSION || '*.ts')
+      `${__dirname}/controllers/${process.env.FILES_EXTENSION}`
     ],
     validation: false,
     development: true
