@@ -9,11 +9,10 @@
     "scripts": {
         "dev": "nodemon src/index.ts",
         "postinstall": "yarn build",
-        "prestart": "yarn install",
         "build": "yarn tsc",
         "start": "node ./build/index.js",
         "test": "jest",
-        "tsc": "npx tsc -p ."
+        "tsc": "tsc -p ."
     },
     "license": "MIT",
     "devDependencies": {
