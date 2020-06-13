@@ -5,5 +5,5 @@ build/
 tmp/
 temp/
 
-package.lock.json
+package-lock.json
 .env
