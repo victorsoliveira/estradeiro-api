@@ -5,6 +5,8 @@ import { createConnection } from "typeorm";
 import { useContainer as ormUseContainer } from "typeorm";
 import { Container } from "typedi";
 
+import path from 'path';
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -30,20 +32,21 @@ createConnection({
     logging: true,
     migrationsTableName: "migrations",
     entities: [
-        "src/entities/**/*.ts"
+      path.resolve(__dirname, 'entities', process.env.FILES_EXTENSION || '*.ts')
     ],
     subscribers: [
-        "src/subscribers/**/*.ts"
+      path.resolve(__dirname, 'subscribers', process.env.FILES_EXTENSION || '*.ts')
     ],
     cli: {
-        "entitiesDir": "src/entities",
-        "migrationsDir": "src/migrations",
-        "subscribersDir": "src/subscriber"
+        "entitiesDir": path.resolve(__dirname, 'entities'),
+        "subscribersDir": path.resolve(__dirname, 'subscribers')
     }
 }).then(() => {
 
   useExpressServer(app, {
-    controllers: [__dirname + "/controllers/*.ts"],
+    controllers: [
+      path.resolve(__dirname, 'controllers', process.env.FILES_EXTENSION || '*.ts')
+    ],
     validation: false,
     development: true
   });
