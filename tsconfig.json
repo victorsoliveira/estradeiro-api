@@ -1,7 +1,8 @@
 {
    "compilerOptions": {
       "lib": [
-         "es6"
+         "es6",
+         "dom"
       ],
       "target": "es6",
       "module": "commonjs",
@@ -9,7 +10,8 @@
       "outDir": "./build",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "typeRoots": ["./node_modules/@types/"]
    },
    "include": [
       "src/**/*"
