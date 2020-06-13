@@ -51,10 +51,12 @@ createConnection({
     development: true
   });
 
-  // Run app
-  app.listen(3000);
+  const PORT = process.env.PORT || 5000;
 
-  console.log("Estradeiro API up at port 3000");
+  // Run app
+  app.listen(PORT);
+
+  console.log(`Estradeiro API up at port ${PORT}`);
 
 }).catch(error => console.log("TypeORM connection error: ", error));
 
