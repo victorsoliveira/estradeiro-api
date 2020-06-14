@@ -36,5 +36,31 @@ create table places
 	phone varchar(50),
 	details text
 );
-comment on table places is 'Lugares nas estradas';
+comment on table places is 'Lugares em geral';
 
+create table users
+(
+	id serial
+		constraint users_pk
+			primary key,
+	name varchar(100),
+	phone_number numeric,
+	lat numeric,
+	long numeric
+);
+
+comment on table users is 'Usuários';
+
+
+create table communication
+(
+	id serial
+		constraint communication_pk
+			primary key,
+	contact varchar(50),
+	message text,
+	processed boolean,
+	identifier uuid
+);
+
+comment on table communication is 'Comunicação P2P';

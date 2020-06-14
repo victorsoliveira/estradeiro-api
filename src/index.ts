@@ -13,8 +13,6 @@ import app from "./app";
 routingUseContainer(Container);
 ormUseContainer(Container);
 
-console.log(__dirname);
-
 createConnection({
     type: "postgres",
     host: process.env.PG_HOST,
